@@ -1,29 +1,40 @@
-from caracteres import letras, numeros, simbolos
+from caracteres import letters, numbers, symbols, key_logo
 import random
+print(key_logo)
+print("""Bem vindo ao gerador de senhas aleatorias PyPassword!
+O script ira gerar uma senha aleatoria para você contendo letras, números e simbolos.
+""")
+password = ""
 
-senha = ""
+# Função para concatenar e randomizar os caracteres da lista de acordo com a entrada no input
 
 
-def caracter_random(qty, list):
-    global senha
-    for i in range(qty):
-        senha += random.choice(list)
+def character_random(qty, list):
+    global password
+    for _ in range(qty):
+        password += random.choice(list)
 
 
+# Sera executado caso o úsuario digite um número inteiro
 try:
-    qt_letras = int(input("Quantos letras? "))
-    caracter_random(qty=qt_letras, list=letras)
+    # Solicita ao usuario a quantidade de letras na senha
+    qt_letters = int(input("Quantos letras você deseja na senha? "))
+    character_random(qty=qt_letters, list=letters)
 
-    qt_numeros = int(input("Quantos números? "))
-    caracter_random(qty=qt_numeros, list=numeros)
+    # Solicita ao usuario a quantidade de números
+    qt_numbers = int(input("Quantos números? "))
+    character_random(qty=qt_numbers, list=numbers)
 
-    qt_simbolos = int(input("Quantos simbolos? "))
-    caracter_random(qty=qt_simbolos, list=simbolos)
+    # Solicita ao usuario a quantidade de simbolos
+    qt_symbols = int(input("Quantos simbolos? "))
+    character_random(qty=qt_symbols, list=symbols)
 
-    senha_aleatoria = list(senha)
-    random.shuffle(senha_aleatoria)
-    senha_aleatoria = ''.join(senha_aleatoria)
-    print(senha_aleatoria)
+    # Embaralha a ordem em que os tipos de caracteres são exibidos
+    random_password = list(password)
+    random.shuffle(random_password)
+    random_password = ''.join(random_password)
+    print(f'A senha gerada é {random_password}')
 
+# Sera executado caso o úsuario não digite um número inteiro
 except ValueError:
     print("por favor, digite um número inteiro")
